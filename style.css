@@ -1,0 +1,48 @@
+a {
+    color: cornflowerblue;
+    text-decoration: none;
+}
+a:visited {
+    color: tomato;
+}
+a:hover {
+    text-decoration: underline;
+    color : green;
+}
+a.inHeader {
+    text-decoration: none;
+    color: black;
+}
+header, main, footer {
+    max-width: 1200px;
+    margin: auto;
+}
+body {
+    background: gainsboro;
+}
+header {
+        background: cornflowerblue;
+        overflow: auto;
+    }
+main {
+    background: ghostwhite;
+}
+header h1 {
+    float: left;
+    width: 800px;
+}
+header nav {
+    float: right;
+    width: 400px;
+}
+footer{
+    overflow: auto;
+}
+footer .contact {
+    float: left;
+    width: 800px;
+}
+footer .sitemap {
+    float: right;
+    width: 400px;
+}
