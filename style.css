@@ -3,11 +3,11 @@ a {
     text-decoration: none;
 }
 a:visited {
-    color: tomato;
+    color: black;
 }
 a:hover {
     text-decoration: underline;
-    color : green;
+    color : #ff2244;
 }
 a.inHeader {
     text-decoration: none;
@@ -56,11 +56,11 @@ main .desc{
     float: left;
     width: 600px;
 }
-main .comment-input{
+main .comments{
     float:right;
     width:200px;
 }
-main .comments{
+main .comment-input{
     float:right;
     width:200px;
 }
