@@ -14,11 +14,12 @@ a.inHeader {
     color: black;
 }
 header, main, footer {
-    max-width: 1200px;
+    max-width: 1920px;
     margin: auto;
 }
 body {
     background: gainsboro;
+    margin: 0px;
 }
 header {
         background: cornflowerblue;
@@ -26,23 +27,40 @@ header {
     }
 main {
     background: ghostwhite;
+    overflow: auto;
 }
 header h1 {
     float: left;
-    width: 800px;
+    width: 1000px;
+    margin-left: 10px;
 }
 header nav {
     float: right;
-    width: 400px;
+    width: 500px;
 }
 footer{
     overflow: auto;
 }
 footer .contact {
     float: left;
-    width: 800px;
+    width:1000px;
 }
 footer .sitemap {
     float: right;
     width: 400px;
+}
+div {
+    margin: 10px;
+}
+main .desc{
+    float: left;
+    width: 600px;
+}
+main .comment-input{
+    float:right;
+    width:200px;
+}
+main .comments{
+    float:right;
+    width:200px;
 }
