@@ -6,9 +6,11 @@ var main = function () {
             $newComment.hide();
             $(".comments").append($newComment);
             $newComment.fadeIn();
+            contentComm.push($(".comment-input input").val());
             $(".comment-input input").val("");
         }
     };
+   // $(".tabs a:nth-child(2) span").trigger("click");
     $(".comment-input button").on("click", function (event) {
         addCommentFromInputBox()
     })
@@ -22,30 +24,18 @@ var main = function () {
             $(".comments p").remove();
         });
     });
-    var toDos = [
-        "Закончить писать эту книгу",
-        "Вывести Грейси на прогулку в парк",
-        "Ответить на электронные письма",
-        "Подготовиться к лекции в понедельник",
-        "Обновить несколько новых задач",
-        "Купить продукты"
-    ];
-    //... все остальное, относящееся к вкладкам
-
-
+    var contentComm = [];
     $(".tabs span").toArray().forEach(function (element) {
         $(element).on("click", function() {
             var $element = $(element);
-            // $cont;
             $(".tabs span").removeClass("active");
             $element.addClass("active");
             $("main .comments").empty();
             if ($element.parent().is(":nth-child(1)")) {
                 console.log("Щелчок на первой вкладке!");
             } else if ($element.parent().is(":nth-child(2)")) {
-                // $cont=$("p");
-                toDos.forEach(function (TODO) {
-                    $(".comments").append($("<p>").text(TODO));
+                contentComm.forEach(function (txt) {
+                    $(".comments").append($("<p>").text(txt));
                 });
             } else if ($element.parent().is(":nth-child(3)")) {
                 console.log("Щелчок на третьей вкладке!");
@@ -53,5 +43,6 @@ var main = function () {
             return false;
         });
     });
+    $(".tabs a:nth-child(2) span").trigger("click");
 };
 $(document).ready(main);
