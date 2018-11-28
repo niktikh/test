@@ -4,7 +4,12 @@ var main = function () {
         if ($(".comment-input input").val() !== "") {
             $newComment.text($(".comment-input input").val());
             $newComment.hide();
-            $(".comments").append($newComment);
+            if ($(".tabs span.active").parent().is(":nth-child(1)")) {
+                $(".comments").prepend($newComment);
+            }
+            else{
+                $(".comments").append($newComment);
+            }
             $newComment.fadeIn();
             contentComm.push($(".comment-input input").val());
             $(".comment-input input").val("");
@@ -29,10 +34,15 @@ var main = function () {
         $(element).on("click", function() {
             var $element = $(element);
             $(".tabs span").removeClass("active");
+            $(".tabs span").addClass("notActive");
+            $element.removeClass("notActive");
             $element.addClass("active");
+           // $(".tabs span").toggleClass("notActive");
             $("main .comments").empty();
             if ($element.parent().is(":nth-child(1)")) {
-                console.log("Щелчок на первой вкладке!");
+                for (var i=(contentComm.length-1); i >= 0; i-- ){
+                    $(".comments").append($("<p>").text(contentComm[i]));
+                }
             } else if ($element.parent().is(":nth-child(2)")) {
                 contentComm.forEach(function (txt) {
                     $(".comments").append($("<p>").text(txt));
