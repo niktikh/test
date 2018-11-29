@@ -1,4 +1,7 @@
-var main = function () {
+var main = function (objs) {
+    var contentComm = objs.map(function(ob){
+        return ob.description;
+    });
     var addCommentFromInputBox = function () {
         var $newComment = $("<p>");
         if ($(".comment-input input").val() !== "") {
@@ -29,7 +32,6 @@ var main = function () {
             $(".comments p").remove();
         });
     });
-    var contentComm = [];
     $(".tabs span").toArray().forEach(function (element) {
         $(element).on("click", function() {
             var $element = $(element);
@@ -54,5 +56,13 @@ var main = function () {
         });
     });
     $(".tabs a:nth-child(2) span").trigger("click");
+    $.getJSON("cards/ace.json", function (card) {
+        // вводим карту в консоль
+        console.log(card);
+    });
 };
-$(document).ready(main);
+$(document).ready(function(){
+    $.getJSON("cards/ace.json",function(obj){
+        main(obj)
+    });
+});
