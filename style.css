@@ -54,21 +54,35 @@ div {
 }
 main .desc{
     float: left;
-    width: 600px;
+    /*width: 600px;*/
 }
 main .comments{
-    float:right;
-    width:200px;
+    float:left;
+    width:300px;
 }
 main .comment-input{
     float:right;
     width:200px;
+    margin-right: 100px;
 }
 .comments p:nth-child(even) {
     background: lavender;
 }
 .comments p:nth-child(odd) {
     background: gainsboro;
+}
+.comments h3 {
+    background: lavender;
+    margin: 5px;
+}
+.comments ul {
+    background: gainsboro;
+    margin: 2px;
+    padding-left: 5px;
+    margin-left: 15px;
+}
+.comments ul li {
+    margin: 1px;
 }
 .tabs a span{
     display: inline-block;

@@ -15,6 +15,8 @@ var main = function (objs) {
             }
             $newComment.fadeIn();
             contentComm.push($(".comment-input input").val());
+          //  $tags = $(".comment-input input.tags").val().split(",");
+            objs.push({description:$(".comment-input input.desc").val(), tags:$(".comment-input input.tags").val().split(",")});
             $(".comment-input input").val("");
         }
     };
@@ -39,8 +41,8 @@ var main = function (objs) {
             $(".tabs span").addClass("notActive");
             $element.removeClass("notActive");
             $element.addClass("active");
-           // $(".tabs span").toggleClass("notActive");
             $("main .comments").empty();
+            $("main .comment-input").hide();
             if ($element.parent().is(":nth-child(1)")) {
                 for (var i=(contentComm.length-1); i >= 0; i-- ){
                     $(".comments").append($("<p>").text(contentComm[i]));
@@ -50,11 +52,59 @@ var main = function (objs) {
                     $(".comments").append($("<p>").text(txt));
                 });
             } else if ($element.parent().is(":nth-child(3)")) {
-                console.log("Щелчок на третьей вкладке!");
+                console.log("Щелчок на tags!");
+                var orgByTag = makeOrgByTags(objs);
+                orgByTag.forEach(function (tagobj){
+                   var $tagname = $("<h3>").text(tagobj.name);
+                   var $contenttag = $("<ul>");
+                   tagobj.desc.forEach(function (desctxt) {
+                       var $li = $("<li>").text(desctxt);
+                       $contenttag.append($li);
+                   });
+                   $("main .comments").append($tagname);
+                   $("main .comments").append($contenttag);
+                });
+            } else if ($element.parent().is(":nth-child(4)")) {
+                $("main .comment-input").fadeIn();
             }
             return false;
         });
     });
+
+
+    var makeOrgByTags  = function (massobjtodo){
+        var tags = [];
+        massobjtodo.forEach(function (objtodo){
+            objtodo.tags.forEach(function (tag) {
+                if (checkmass(tags,tag)) {
+                    tags.push({name:tag,desc:[objtodo.description]});
+                }
+                else {
+                    AddDesc(tags,tag,objtodo.description);
+                }
+            });
+        });
+        return tags;
+    };
+
+    var checkmass  = function (mass,tagname){
+        var bool = true
+        mass.forEach(function (objinmass) {
+            if (tagname == objinmass.name) {
+                bool = false;
+            }
+        });
+        return bool;
+    };
+
+    var AddDesc = function (newmass,tagname,descthe){
+        newmass.forEach(function (obj) {
+            if (obj.name == tagname){
+                obj.desc.push(descthe);
+            }
+        });
+    };
+
     $(".tabs a:nth-child(2) span").trigger("click");
     $.getJSON("cards/ace.json", function (card) {
         // вводим карту в консоль
